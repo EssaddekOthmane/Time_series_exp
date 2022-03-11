@@ -84,10 +84,6 @@ st.markdown("On rajoute aussi le processus de retour à la moyenne d'*Ornstein U
 st.latex(r'''
      dX_t=\theta(\mu-X_t)dt+\sigma dB_t
      ''')
-st.latex(r'''
-    f(t)=c+\sum_{i=1}^6a_icos(2\pi\lambda_it)
-     ''')
-
 
 
 ou_=orstein_uhlenbeck2(1,366 ,0,100,0,8)
@@ -102,18 +98,18 @@ df_es.columns=['estim']
 df_es.set_index(ind)
 dff["estim"]=s_t
 
-# test=dff.copy()
-# test['ind']=[k for k in range(366 )]
-# test.reset_index(inplace=True)
-# line1=alt.Chart(test).mark_line().encode(
-#     x='Datetime',
-#     y='PJM_Load_MW'
-# )
-# line2=alt.Chart(test).mark_line(color='red').encode(
-#     x='Datetime',
-#     y='estim_sh'
-# )
-
+test=dff.copy()
+test['ind']=[k for k in range(366 )]
+test.reset_index(inplace=True)
+line1=alt.Chart(test).mark_line().encode(
+    x='Datetime',
+    y='PJM_Load_MW'
+)
+line2=alt.Chart(test).mark_line(color='red').encode(
+    x='Datetime',
+    y='estim_sh'
+)
+st.altair_chart(line1+line2, use_container_width=True)
 #wind_direction = pd.read_csv('wind_direction.csv', index_col='datetime', parse_dates=['datetime'])
 
 #st.dataframe(wind_direction)
