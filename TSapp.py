@@ -34,7 +34,7 @@ if (option_freq!='none'):
     #fr=energy["PJM_Load_MW"].asfreq(f"{1}{option_freq}") 
     fr=pd.DataFrame(energy["PJM_Load_MW"].asfreq(f"{1}{option_freq}"))
     frr=fr.copy()
-    frr['ind']=[k for k in range(len(frr["PJM_Load_MW"]) )]
+    frr['ind']=[k for k in range(len(fr["PJM_Load_MW"]) )]
     frr.reset_index(inplace=True)
 
     base1=alt.Chart(frr)
