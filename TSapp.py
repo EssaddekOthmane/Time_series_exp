@@ -37,7 +37,7 @@ frr=fr.copy()
 frr['ind']=[k for k in range(len(fr["PJM_Load_MW"]) )]
 frr.reset_index(inplace=True)
 
-base1=alt.Chart(frr)
+base1=alt.Chart(pd.DataFrame(frr))
 line1=base1.mark_line().encode(
     x='Datetime',
     y='PJM_Load_MW'
