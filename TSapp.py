@@ -108,7 +108,7 @@ line1=alt.Chart(test).mark_line().encode(
 )
 line2=alt.Chart(test).mark_line(color='red').encode(
     x='Datetime',
-    y='estim_sh'
+    y='estim'
 )
 st.altair_chart(line1+line2, use_container_width=True)
 #wind_direction = pd.read_csv('wind_direction.csv', index_col='datetime', parse_dates=['datetime'])
