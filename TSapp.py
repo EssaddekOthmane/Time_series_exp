@@ -45,9 +45,21 @@ frr.reset_index(inplace=True)
 # st.altair_chart(line1, use_container_width=True)
 st.dataframe(frr)
 st.subheader("1. Modélisation")
-st.markdown("Dans cette partie nous alons utiliser le processus de retour à la moyenne d'*Ornstein Uhlenbeck* qui suit la dynamique suivante:")
+st.markdown("Dans cette partie nous alons essayyer de modeliser la série temporelle, on propose alors d'écrire la consomation d'enérgie $C_t$ sous la forme: ")
+st.latex(r'''
+    C_t=exp\{f(t)+X_t\}
+     ''')
+st.markdown("Pour modéliser les saisonabilité, on utilise $f$:")
+st.latex(r'''
+    f(t)=c+\sum_{i=1}^6a_icos(2\pi\lambda_it)
+     ''')
+
+st.markdown("On rajoute aussi le processus de retour à la moyenne d'*Ornstein Uhlenbeck* qui suit la dynamique suivante:")
 st.latex(r'''
      dX_t=\theta(\mu-X_t)dt+\sigma dB_t
+     ''')
+st.latex(r'''
+    f(t)=c+\sum_{i=1}^6a_icos(2\pi\lambda_it)
      ''')
 
 #wind_direction = pd.read_csv('wind_direction.csv', index_col='datetime', parse_dates=['datetime'])
