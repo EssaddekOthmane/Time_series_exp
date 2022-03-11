@@ -6,6 +6,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime
 import altair as alt
+import re
 #import statsmodels.api as sm
 # from numpy.random import normal, seed
 # from scipy.stats import norm
@@ -55,11 +56,11 @@ energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 Freqs=['h','D','M']
 option_freq='D'
 option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
-
+choix=re.sub(r"\s+", "", option_freq)
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
 
     #fr=energy["PJM_Load_MW"].asfreq(f"{1}{option_freq}") 
-fr=pd.DataFrame(energy["PJM_Load_MW"].asfreq(f"{1}{option_freq}"))
+fr=pd.DataFrame(energy["PJM_Load_MW"].asfreq(f"{1}{choix}"))
 frr=fr.copy()
 frr['ind']=[k for k in range(len(fr["PJM_Load_MW"]) )]
 frr.reset_index(inplace=True)
