@@ -30,7 +30,7 @@ option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :'
 
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
 
-fr=energy["PJM_Load_MW"].asfreq( f"{1}option_freq") 
+fr=energy["PJM_Load_MW"].asfreq( f"{1}{option_freq}") 
 base1=alt.Chart(fr)
 line1=alt.Chart(base1).mark_line().encode(
     x='Datetime',
