@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from datetime import datetime
+import altair as alt
 #import statsmodels.api as sm
 # from numpy.random import normal, seed
 # from scipy.stats import norm
