@@ -26,17 +26,18 @@ st.markdown("On commence par regarder la dinamique de notre série temporelle, o
 energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 st.dataframe(energy)
 Freqs=['h','D','M']
+option_freq='none'
 option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
 
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
-
-fr=energy["PJM_Load_MW"].asfreq( f"{1}{option_freq}") 
-base1=alt.Chart(fr)
-line1=alt.Chart(base1).mark_line().encode(
+if (option_freq!='none'):
+    fr=energy["PJM_Load_MW"].asfreq(f"{1}{option_freq}") 
+    base1=alt.Chart(fr)
+    line1=alt.Chart(base1).mark_line().encode(
     x='Datetime',
     y='PJM_Load_MW'
-)
-st.altair_chart(line1, use_container_width=True)
+    )
+    st.altair_chart(line1, use_container_width=True)
 
 st.subheader("1. Modélisation")
 st.markdown("Dans cette partie nous alons utiliser le processus de retour à la moyenne d'*Ornstein Uhlenbeck* qui suit la dynamique suivante:")
