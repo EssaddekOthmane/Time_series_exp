@@ -27,7 +27,7 @@ energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 st.dataframe(energy)
 Freqs=['h','D','M']
 option_freq='D'
-option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
+#option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
 
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
 
