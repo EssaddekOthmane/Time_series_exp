@@ -54,7 +54,7 @@ energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 #st.dataframe(energy)
 Freqs=['h','D','M']
 option_freq='D'
-#option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
+option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
 
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
 
@@ -64,13 +64,13 @@ frr=fr.copy()
 frr['ind']=[k for k in range(len(fr["PJM_Load_MW"]) )]
 frr.reset_index(inplace=True)
 
-# base1=alt.Chart(pd.DataFrame(frr))
-# line1=base1.mark_line().encode(
-#     x='Datetime',
-#     y='PJM_Load_MW'
-#     )
-# st.altair_chart(line1, use_container_width=True)
-st.dataframe(frr)
+base1=alt.Chart(pd.DataFrame(frr))
+line=base1.mark_line().encode(
+    x='Datetime',
+    y='PJM_Load_MW'
+    )
+st.altair_chart(line, use_container_width=True)
+#st.dataframe(frr)
 st.subheader("1. Modélisation")
 st.markdown("Dans cette partie nous alons essayyer de modeliser la série temporelle, on propose alors d'écrire la consomation d'enérgie $C_t$ sous la forme: ")
 st.latex(r'''
