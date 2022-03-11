@@ -24,7 +24,7 @@ st.title("Consomation d'energie")
 st.subheader("1.Visualisation")
 st.markdown("On commence par regarder la dinamique de notre série temporelle, on vous propose alors de choisir la fréquense à laquelle vous souhaitez moyenniser la serie. ")
 energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
-st.dataframe(energy)
+#st.dataframe(energy)
 Freqs=['h','D','M']
 option_freq='D'
 #option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs)
@@ -37,13 +37,13 @@ frr=fr.copy()
 frr['ind']=[k for k in range(len(fr["PJM_Load_MW"]) )]
 frr.reset_index(inplace=True)
 
-base1=alt.Chart(pd.DataFrame(frr))
-line1=base1.mark_line().encode(
-    x='Datetime',
-    y='PJM_Load_MW'
-    )
-st.altair_chart(line1, use_container_width=True)
-
+# base1=alt.Chart(pd.DataFrame(frr))
+# line1=base1.mark_line().encode(
+#     x='Datetime',
+#     y='PJM_Load_MW'
+#     )
+# st.altair_chart(line1, use_container_width=True)
+st.dataframe(frr)
 st.subheader("1. Modélisation")
 st.markdown("Dans cette partie nous alons utiliser le processus de retour à la moyenne d'*Ornstein Uhlenbeck* qui suit la dynamique suivante:")
 st.latex(r'''
