@@ -42,7 +42,8 @@ def fe(x,c):
     
 energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
-L=len(E_d["PJM_Load_MW"])
+dff=pd.DataFrame(E_d)
+L=len(dff["PJM_Load_MW"])
 c=5
 a=0.1*np.array([10,.5,.5,.25,.1,.1])
 b=0.1*np.array([10,.5,.5,.025,.01,-.1])
@@ -100,8 +101,8 @@ ou_=orstein_uhlenbeck2(1,L ,0,100,0,10)
 #energy["PJM_Load_MW"].asfreq('1d').plot()
 s_t=23000*np.random.uniform(0.95,1,L)+10*np.exp(f_t+0.5*ou_)#f_t*(1+0.005*(np.exp(ou_)+.001*f_t*ou_))
 #E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
-dff=pd.DataFrame(E_d)
-ind=E_d.index
+#dff=pd.DataFrame(E_d)
+ind=dff.index
 df_es=pd.DataFrame(s_t)
 #df_es.columns=['Datetime','O_U']
 df_es.columns=['estim']
