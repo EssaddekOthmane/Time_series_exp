@@ -36,22 +36,29 @@ def fe(x,c):
     f=c
     for i in range(5):
         f=f+a[i]*(1+np.cos(2*np.pi*lam[i]*x))+b[i]*(np.sin(0.3333*2*np.pi*lam[i]*x))
-    return(f)
 
+        return(f)
+
+    
+energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
+E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
+L=len(E_d["PJM_Load_MW"])
 c=5
 a=0.1*np.array([10,.5,.5,.25,.1,.1])
 b=0.1*np.array([10,.5,.5,.025,.01,-.1])
 lam=np.array([2.1,.75,2.5,0.1*365/7,0.1*365/7,0.1*365/7])                   #[20,.5,.1,30*365/7,1*20*365/7,40*365/7])
 
 
-t_=np.linspace(0,2,733 )
+t_=np.linspace(0,2,L)
 
-f_t=np.array([fe(t_[i],c) for i in range(733 )])
+f_t=np.array([fe(t_[i],c) for i in range(L)])
 
 st.title("Consomation d'energie")
 st.subheader("1.Visualisation")
 st.markdown("On commence par regarder la dinamique de notre série temporelle, on vous propose alors de choisir la fréquense à laquelle vous souhaitez moyenniser la serie. ")
-energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
+# energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
+# E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
+# L=len(E_d["PJM_Load_MW"])
 #st.dataframe(energy)
 Freqs=['h','D','M']
 option_freq='D'
@@ -89,10 +96,10 @@ st.latex(r'''
 
 
 #f_t=np.array([fe(t_[i],c) for i in range(733 )])
-ou_=orstein_uhlenbeck2(1,733 ,0,100,0,10)
+ou_=orstein_uhlenbeck2(1,L ,0,100,0,10)
 #energy["PJM_Load_MW"].asfreq('1d').plot()
-s_t=23000*np.random.uniform(0.95,1,733)+10*np.exp(f_t+0.5*ou_)#f_t*(1+0.005*(np.exp(ou_)+.001*f_t*ou_))
-E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
+s_t=23000*np.random.uniform(0.95,1,L)+10*np.exp(f_t+0.5*ou_)#f_t*(1+0.005*(np.exp(ou_)+.001*f_t*ou_))
+#E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
 dff=pd.DataFrame(E_d)
 ind=E_d.index
 df_es=pd.DataFrame(s_t)
@@ -102,7 +109,7 @@ df_es.set_index(ind)
 dff["estim"]=s_t
 
 test=dff.copy()
-test['ind']=[k for k in range(733 )]
+test['ind']=[k for k in range(L)]
 test.reset_index(inplace=True)
 line1=alt.Chart(test).mark_line().encode(
     x='Datetime',
