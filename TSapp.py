@@ -92,7 +92,7 @@ st.latex(r'''
 ou_=orstein_uhlenbeck2(1,733 ,0,100,0,10)
 #energy["PJM_Load_MW"].asfreq('1d').plot()
 s_t=23000*np.random.uniform(0.95,1,733)+10*np.exp(f_t+0.5*ou_)#f_t*(1+0.005*(np.exp(ou_)+.001*f_t*ou_))
-E_d=energy["PJM_Load_MW"]['1999-01-01':'2000-01-01'].asfreq('1d')#.shift(25)
+E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
 dff=pd.DataFrame(E_d)
 ind=E_d.index
 df_es=pd.DataFrame(s_t)
