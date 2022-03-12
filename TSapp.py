@@ -41,7 +41,7 @@ def fe(x,c):
 
     
 energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
-E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
+E_d=energy["PJM_Load_MW"].asfreq('1D')#.shift(25)
 dff=pd.DataFrame(E_d)
 L=len(dff["PJM_Load_MW"])
 c=5
@@ -56,7 +56,7 @@ f_t=np.array([fe(t_[i],c) for i in range(L)])
 
 st.title("Consomation d'energie")
 st.subheader("1.Visualisation")
-st.markdown("On commence par regarder la dinamique de notre série temporelle, on vous propose alors de choisir la fréquense à laquelle vous souhaitez moyenniser la serie. ")
+st.markdown(f"{L}On commence par regarder la dinamique de notre série temporelle, on vous propose alors de choisir la fréquense à laquelle vous souhaitez moyenniser la serie. ")
 # energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
 # E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
 # L=len(E_d["PJM_Load_MW"])
