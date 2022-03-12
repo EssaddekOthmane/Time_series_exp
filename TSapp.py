@@ -41,7 +41,7 @@ def fe(x,c):
 
     
 energy=pd.read_csv('PJM_Load_hourly (1).csv', index_col=[0], parse_dates=[0])
-E_d=energy["PJM_Load_MW"].asfreq('1D')#.shift(25)
+E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
 dff=pd.DataFrame(E_d)
 L=len(dff["PJM_Load_MW"])
 c=5
