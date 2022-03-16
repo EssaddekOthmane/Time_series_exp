@@ -81,7 +81,7 @@ line=base1.mark_line().encode(
 st.altair_chart(line, use_container_width=True)
 #st.dataframe(frr)
 st.subheader("1. Modélisation")
-st.markdown("Dans cette partie nous alons essayyer de modeliser la série temporelle, on propose alors d'écrire la consomation d'enérgie $C_t$ sous la forme: ")
+st.markdown("Dans cette partie nous alons essayer de modeliser la série temporelle, on propose alors d'écrire la consomation d'enérgie $C_t$ sous la forme: ")
 st.latex(r'''
     C_t=exp\{f(t)+X_t\}
      ''')
@@ -95,6 +95,12 @@ st.latex(r'''
      dX_t=\theta(\mu-X_t)dt+\sigma dB_t
      ''')
 
+st.markdown("Etant donnée des observations de prix $(S_{t_0},...,S_{t_n})$ On peut ignorer en premier lieux l'effect de retour a la moyenne pour éstimer les paramétres de $f(t)=ln(S_t)$ qui minimise")
+
+st.latex(r'''
+    \sum_{i=0}^n(ln(S_{t_i})-f(t_i))^2
+     ''')
+st.markdown("Maintenant étant donéé $f$, on calibre le processus $(X_t)_{t\geq0}$ par la méthode du maximum de vraisemblanc en utilisant $\left\{ln(S_{t_0})-f(t_0),....,ln(S_{t_n})-f(t_n)\right\}$") 
 
 #f_t=np.array([fe(t_[i],c) for i in range(733 )])
 ou_=orstein_uhlenbeck2(1,L ,0,100,0,10)
