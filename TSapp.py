@@ -100,7 +100,7 @@ st.markdown("Etant donnée des observations de prix $(S_{t_0},...,S_{t_n})$ On p
 st.latex(r'''
     \sum_{i=0}^n(ln(S_{t_i})-f(t_i))^2
      ''')
-st.markdown("Maintenant étant donéé $f$, on calibre le processus $(X_t)_{t\geq0}$ par la méthode du maximum de vraisemblanc en utilisant $\left\{ln(S_{t_0})-f(t_0),....,ln(S_{t_n})-f(t_n)\right\}$") 
+st.markdown("Maintenant étant donéé $f$, on calibre le processus $(X_t)_{t\geq0}$ par la méthode du maximum de vraisemblanc en utilisant {$ln(S_{t_0})-f(t_0),....,ln(S_{t_n})-f(t_n)$}") 
 
 #f_t=np.array([fe(t_[i],c) for i in range(733 )])
 ou_=orstein_uhlenbeck2(1,L ,0,100,0,10)
