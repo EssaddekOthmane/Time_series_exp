@@ -55,7 +55,7 @@ t_=np.linspace(0,L/365,L)
 f_t=np.array([fe(t_[i],c) for i in range(L)])
 
 st.title("Consomation d'energie")
-st.markdown("La base de données qu'on va utiliser contient une seule colonne indexée par le type Datetime.    \n En premier lieu on va visualiser notre série temporelle avec différentes fréquences. Ensuite on construit un modèle qui approche la S.T. ")
+st.markdown("La base de données qu'on va utiliser contient une seule colonne indexée par le type Datetime qui représente la consomation d'énergie par heure.    \n En premier lieu on va visualiser notre série temporelle avec différentes fréquences. Ensuite on construit un modèle qui approche la S.T. ")
 st.dataframe(energy)
 st.subheader("Visualisation")
 st.markdown(f"{L}On commence par regarder la dinamique de notre série temporelle, on vous propose alors de choisir la fréquense à laquelle vous souhaitez moyenniser la serie. ")
