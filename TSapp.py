@@ -65,7 +65,7 @@ st.markdown(f"{L}On commence par regarder la dinamique de notre série temporell
 #st.dataframe(energy)
 Freqs=['h','D','M']
 option_freq='D'
-option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs,value='D')
+option_freq=st.multiselect('veuillez selectionner une base pour la fréquence :',Freqs,default=["D"])
 choix=re.sub(r"\s+", "", option_freq[0])
 #num=st.slider( f"For the parameter: {k}",step= (l[1]-l[0]),min_value=l[0], max_value=l[-1],value= l[-1]) 
 
