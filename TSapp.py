@@ -108,7 +108,7 @@ st.markdown("Maintenant étant donéé $f$, on calibre le processus $(X_t)_{t\ge
 ou_=orstein_uhlenbeck2(1,L ,0,100,0,10)
 #energy["PJM_Load_MW"].asfreq('1d').plot()
 s_t=23000*np.random.uniform(0.95,1,L)+5*np.exp(f_t+0.5*ou_)
-st.radio(s_t)
+st.write(s_t)
 #E_d=energy["PJM_Load_MW"].asfreq('1d')#.shift(25)
 #dff=pd.DataFrame(E_d)
 ind=dff.index
